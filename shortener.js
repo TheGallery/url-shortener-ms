@@ -1,9 +1,9 @@
 const mongo = require('mongodb').MongoClient;
-const validURL = require('valid-url');
+const isURL = require('is-url');
 
 function generateUrl (res, url) {
   // Check if the url is valid
-  if (!validURL.isWebUri(url)) {
+  if (!isValidUrl(url)) {
     res.json({
       error: 'Invalid url provided. Make sure you include the protocol.'
     });
@@ -79,6 +79,12 @@ function addUrl (db, res, url, id) {
       short_url: process.env.APP_URL + '/' + id
     });
   });
+}
+
+function isValidUrl (url) {
+  // https://github.com/component/regexps/blob/master/index.js#L3
+  const urlRegex = new RegExp(/^(?:(?:ht|f)tp(?:s?)\:\/\/|~\/|\/)?(?:\w+:\w+@)?((?:(?:[-\w\d{1-3}]+\.)+(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|co\.uk|ac\.uk|it|fr|tv|museum|asia|local|travel|[a-z]{2}))|((\b25[0-5]\b|\b[2][0-4][0-9]\b|\b[0-1]?[0-9]?[0-9]\b)(\.(\b25[0-5]\b|\b[2][0-4][0-9]\b|\b[0-1]?[0-9]?[0-9]\b)){3}))(?::[\d]{1,5})?(?:(?:(?:\/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|\/)+|\?|#)?(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?:#(?:[-\w~!$ |\/.,*:;=]|%[a-f\d]{2})*)?$/);
+  return urlRegex.test(url);
 }
 
 module.exports = {
