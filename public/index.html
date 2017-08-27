@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>URL Shortener Microservice</title>
+</head>
+<body>
+  <h1>URL Shortener Microservice</h1>
+
+  <h2>Endpoints:</h2>
+    <p>
+        <code>https://pure-reef-73475.herokuapp.com/[urlId]</code><br />
+        where [urlId] is the short url id. If this is valid, it will redirect to the original url.
+    </p>
+    <p>
+      <code>https://pure-reef-73475.herokuapp.com/generate/[url]</code><br />
+       where [url] a valid url to be shortened.
+    </p>
+  <h2>Example usage:</h2>
+    <code>https://pure-reef-73475.herokuapp.com/generate/http://www.twitter.com</code><br />
+    <code>https://pure-reef-73475.herokuapp.com/wod3r</code>
+  <h2>Example output:</h2>
+    <code>{"original_url":"http://www.twitter.com","short_url":"https://pure-reef-73475.herokuapp.com/wod3r"}</code>
+</body>
+</html>
