@@ -1,5 +1,4 @@
 const mongo = require('mongodb').MongoClient;
-const isURL = require('is-url');
 
 function generateUrl (res, url) {
   // Check if the url is valid
