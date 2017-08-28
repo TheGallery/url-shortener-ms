@@ -32,6 +32,8 @@ function redirectToUrl (res, url) {
         });
       }
     });
+
+    db.close();
   });
 }
 
@@ -48,6 +50,8 @@ function generateUniqueId (db, res, url) {
         original_url: urlExists[0].original_url,
         short_url: urlExists[0].short_url
       });
+
+      db.close();
     } else { // if the url doesn't exist, generate a new one
       const existingIds = urls.map(curUrl => curUrl.short_url.slice(-5));
       let id;
@@ -77,6 +81,8 @@ function addUrl (db, res, url, id) {
       original_url: url,
       short_url: process.env.APP_URL + '/' + id
     });
+
+    db.close();
   });
 }
 
